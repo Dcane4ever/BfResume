@@ -82,7 +82,7 @@ if (hireBtn && congrats) {
         }
 
         hireBtn.dataset.sent = 'true';
-        hireBtn.textContent = 'APPLICATION SENT! ✅';
+        hireBtn.textContent = 'LOCKED IN! 🔒❤️';
         hireBtn.classList.replace('bg-rose-500', 'bg-green-500');
         hireBtn.classList.replace('hover:bg-rose-600', 'hover:bg-green-600');
         hireBtn.classList.add('btn-sent');
