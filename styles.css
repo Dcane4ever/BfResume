@@ -57,12 +57,12 @@ body::before {
     box-shadow: 0 16px 36px rgba(244, 114, 182, 0.25);
 }
 
-#toxic-trait {
-    transition: transform 0.2s ease;
+.toxic-box {
+    transition: transform 0.3s ease;
 }
 
-#toxic-trait:hover {
-    transform: rotate(-1deg) scale(1.02);
+.toxic-box:hover {
+    transform: rotate(-5deg) scale(1.05);
 }
 
 .floating {
