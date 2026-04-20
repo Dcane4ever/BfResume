@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --rose-50: #fff1f2;
+    --rose-100: #ffe4e6;
+    --rose-300: #fda4af;
+    --rose-400: #fb7185;
+    --rose-500: #f43f5e;
+    --rose-600: #e11d48;
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(255, 255, 255, 0.35);
+    --glass-shadow: 0 12px 30px rgba(244, 114, 182, 0.22);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7e2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #374151;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20vmax;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(251, 113, 133, 0.22), transparent 40%),
+        radial-gradient(circle at 85% 0%, rgba(244, 114, 182, 0.18), transparent 38%),
+        radial-gradient(circle at 10% 80%, rgba(253, 164, 175, 0.2), transparent 42%);
+    z-index: -2;
+}
+
+#heart-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(244, 114, 182, 0.25);
+}
+
+#toxic-trait {
+    transition: transform 0.2s ease;
+}
+
+#toxic-trait:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+    will-change: transform;
+}
+
+.heart-float {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.7;
+    animation: rise var(--duration) linear forwards;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 8px 14px rgba(244, 114, 182, 0.3));
+}
+
+.heart-float .heart-emoji {
+    display: block;
+    animation: sway var(--sway) ease-in-out infinite;
+}
+
+.flag-item span {
+    transition: color 0.2s ease;
+}
+
+.flag-item input:checked + span {
+    color: #15803d;
+}
+
+.green-flag {
+    accent-color: #22c55e;
+}
+
+.skill-chip {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.skill-chip:hover,
+.skill-chip:focus-visible {
+    transform: translateY(-2px) scale(1.03);
+    background: #fecdd3;
+    box-shadow: 0 12px 20px rgba(244, 114, 182, 0.25);
+}
+
+.skill-chip:focus-visible {
+    outline: 2px solid var(--rose-400);
+    outline-offset: 2px;
+}
+
+#skill-tip {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#skill-tip.is-active {
+    color: var(--rose-600);
+    transform: scale(1.05);
+}
+
+.hidden-content {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.35s ease;
+}
+
+.hidden-content.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 200px;
+    pointer-events: auto;
+}
+
+.status-badge {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.btn-sent {
+    box-shadow: 0 12px 20px rgba(34, 197, 94, 0.35);
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rise {
+    from {
+        transform: translate3d(0, 100vh, 0) rotate(0deg);
+        opacity: 0.7;
+    }
+    to {
+        transform: translate3d(0, -10vh, 0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sway {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(var(--drift));
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media (hover: none) {
+    .glass-card:hover {
+        transform: none;
+        box-shadow: var(--glass-shadow);
+    }
+
+    #toxic-trait:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating,
+    .status-badge,
+    .heart-float,
+    .heart-float .heart-emoji {
+        animation: none !important;
+    }
+
+    .glass-card,
+    .skill-chip,
+    #skill-tip,
+    .hidden-content {
+        transition: none !important;
+    }
+}
