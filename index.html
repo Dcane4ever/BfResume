@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vincent | Premium Bebe Material</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -142,26 +141,37 @@
         <div class="card">
           <h2 class="card-title">⭐ Core Boyfriend Skills</h2>
           <div class="skills-grid">
-            <button class="skill-chip" data-tip="Remembers the small details, not just oo lang!">
+            <button class="skill-chip"
+              data-emoji="👂" data-name="Active Listener"
+              data-joke="I will remember you mentioned that one thing that one time three weeks ago at 11:42pm. Don't test me.">
               <span class="skill-emoji">👂</span><span class="skill-name">Active Listener</span>
             </button>
-            <button class="skill-chip" data-tip="From simple chill days to fully planned itineraries.">
+            <button class="skill-chip"
+              data-emoji="🗺️" data-name="Date Planner"
+              data-joke="I have a whole spreadsheet. Candles, playlist, backup restaurant in case you're not feeling the first one. You're welcome.">
               <span class="skill-emoji">🗺️</span><span class="skill-name">Date Planner</span>
             </button>
-            <button class="skill-chip" data-tip="Will motivate you, not just flex in the mirror.">
+            <button class="skill-chip"
+              data-emoji="🏋️" data-name="Gym Partner"
+              data-joke="I will hype you up between every set. Also I will absolutely judge you if you skip leg day. Lovingly.">
               <span class="skill-emoji">🏋️</span><span class="skill-name">Gym Partner</span>
             </button>
-            <button class="skill-chip" data-tip="Turn it off and on? With love.">
+            <button class="skill-chip"
+              data-emoji="💻" data-name="Tech Support"
+              data-joke="'Have you tried turning it off and on?' Yes I will say that. But I will also actually fix it, unlike your last IT guy.">
               <span class="skill-emoji">💻</span><span class="skill-name">Tech Support</span>
             </button>
-            <button class="skill-chip" data-tip="Affectionate but not suffocating.">
+            <button class="skill-chip"
+              data-emoji="🤗" data-name="Clingy (Healthy)"
+              data-joke="I will want to be near you but I still respect that you need to pee alone. Growth.">
               <span class="skill-emoji">🤗</span><span class="skill-name">Clingy (Healthy)</span>
             </button>
-            <button class="skill-chip" data-tip="Making you laugh even on bad days.">
+            <button class="skill-chip"
+              data-emoji="🤡" data-name="Clown Energy"
+              data-joke="I will make you laugh on your worst day. If you don't laugh, I will keep going until you do. This is not a threat. This is a promise.">
               <span class="skill-emoji">🤡</span><span class="skill-name">Clown Energy</span>
             </button>
           </div>
-          <div id="skill-tip-box" class="skill-tip-box" role="status" aria-live="polite">Click a skill to see details!</div>
         </div>
 
         <div class="two-col">
@@ -219,7 +229,7 @@
 
         <div class="card cta-card">
           <h3 class="cta-heading">Target Applicant: <span class="cta-target">YOU.</span></h3>
-          <button id="heart-submit-btn" class="btn-submit">SUBMIT YOUR HEART ❤️</button>
+          <button id="heart-submit-btn" class="btn-submit">Wanna go out on a date??? ❤️</button>
           <div id="congrats-msg" class="congrats" hidden>
             🎉 CONGRATULATIONS! Interview scheduled for the next coffee date. ☕✨
           </div>
@@ -227,6 +237,16 @@
       </section>
 
     </main>
+  </div>
+
+  <!-- ══ SKILL MODAL ══ -->
+  <div id="skill-modal" class="modal-overlay" hidden role="dialog" aria-modal="true">
+    <div class="skill-modal-box">
+      <button id="skill-modal-close" class="modal-close" aria-label="Close">✕</button>
+      <div id="skill-modal-emoji" class="skill-modal-emoji"></div>
+      <h2 id="skill-modal-name" class="skill-modal-name"></h2>
+      <p id="skill-modal-joke" class="skill-modal-joke"></p>
+    </div>
   </div>
 
   <!-- ══ SUCCESS MODAL ══ -->

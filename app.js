@@ -363,22 +363,62 @@ function init() {
   });
 
   // ─ Skills ─
+  const skillModal      = document.getElementById('skill-modal');
+  const skillModalEmoji = document.getElementById('skill-modal-emoji');
+  const skillModalName  = document.getElementById('skill-modal-name');
+  const skillModalJoke  = document.getElementById('skill-modal-joke');
+
+  function openSkillModal(chip) {
+    skillModalEmoji.textContent = chip.dataset.emoji;
+    skillModalName.textContent  = chip.dataset.name;
+    skillModalJoke.textContent  = chip.dataset.joke;
+
+    const box = skillModal.querySelector('.skill-modal-box');
+
+    // Show modal first (hidden=false) so we can measure its final center
+    skillModal.hidden = false;
+
+    // Chip center in viewport
+    const chipRect  = chip.getBoundingClientRect();
+    const chipCx    = chipRect.left + chipRect.width  / 2;
+    const chipCy    = chipRect.top  + chipRect.height / 2;
+
+    // Modal box center in viewport
+    const boxRect   = box.getBoundingClientRect();
+    const boxCx     = boxRect.left + boxRect.width  / 2;
+    const boxCy     = boxRect.top  + boxRect.height / 2;
+
+    // transform-origin offset: where the chip sits relative to the box center
+    const originX = 50 + ((chipCx - boxCx) / boxRect.width)  * 100;
+    const originY = 50 + ((chipCy - boxCy) / boxRect.height) * 100;
+    box.style.setProperty('--origin-x', originX.toFixed(1) + '%');
+    box.style.setProperty('--origin-y', originY.toFixed(1) + '%');
+
+    // Re-trigger animation
+    box.style.animation = 'none';
+    box.offsetHeight;
+    box.style.animation = '';
+
+    playAudioTone(400 + Math.random() * 200, 'sine', 0.3, 0.05);
+    spawnFountainOfSparks(chipCx, chipCy, ['✨','💫','⭐']);
+  }
+
   document.querySelectorAll('.skill-chip').forEach(chip => {
-    const handler = () => {
-      const tip = document.getElementById('skill-tip-box');
-      if (tip) {
-        tip.textContent = chip.dataset.tip;
-        tip.classList.add('popped');
-        setTimeout(() => tip.classList.remove('popped'), 300);
-      }
-      playAudioTone(400 + Math.random() * 200, 'sine', 0.3, 0.05);
-      const r = chip.getBoundingClientRect();
-      spawnFountainOfSparks(r.left + r.width / 2, r.top + r.height / 2, ['✨','💫','⭐']);
-    };
-    chip.addEventListener('click', handler);
+    chip.addEventListener('click', () => openSkillModal(chip));
     chip.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSkillModal(chip); }
     });
+  });
+
+  document.getElementById('skill-modal-close')?.addEventListener('click', () => {
+    skillModal.hidden = true;
+    playAudioTone(300, 'sine', 0.15, 0.04);
+  });
+  skillModal?.addEventListener('click', e => {
+    if (e.target === skillModal) {
+      skillModal.hidden = true;
+      playAudioTone(300, 'sine', 0.15, 0.04);
+    }
   });
 
   // ─ Sliders (just update label values) ─
