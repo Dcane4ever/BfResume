@@ -1,173 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="sunset">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincent | Premium Bebe Material</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vincent | Premium Bebe Material</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="p-4 md:p-8">
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <div id="spark-container" aria-hidden="true"></div>
 
-    <!-- Background Hearts -->
-    <div id="heart-container" aria-hidden="true"></div>
+  <!-- ══ QUIZ SCREEN ══ -->
+  <div id="quiz-screen">
 
-    <main class="max-w-3xl mx-auto">
-        <!-- Header -->
-        <header class="glass-card rounded-3xl p-8 mb-8 text-center relative overflow-hidden">
-            <div class="absolute top-4 right-4">
-                <span class="status-badge bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                    Available Now
-                </span>
-            </div>
-            
-            <div class="w-32 h-32 bg-rose-200 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl floating">
-                <img src="header.jpg" alt="Vincent" class="w-full h-full object-cover rounded-full">
-            </div>
-            
-            <h1 class="text-4xl font-bold text-rose-600 mb-2">Vincent Gabrielle Pimentel</h1>
-            <p class="text-rose-400 font-semibold mb-4 uppercase tracking-widest text-sm">Premium Bebe Material • Emotionally Intelligent</p>
-            
-            <div class="flex flex-wrap justify-center gap-4 text-gray-600 text-sm">
-                <span><i class="fas fa-map-marker-alt mr-2 text-rose-400"></i>Manila, Philippines</span>
-                <span><i class="fas fa-phone mr-2 text-rose-400"></i>09273537500</span>
-                <span><i class="fas fa-envelope mr-2 text-rose-400"></i>vincentgabriellepimentel@gmail.com</span>
-            </div>
-        </header>
+    <div id="quiz-step-0" class="quiz-card">
+      <div class="quiz-big-emoji">✨</div>
+      <h2 class="quiz-title">HI JOHHHHH created something for you while im not responding HAHAHAHAHAH...</h2>
+      <p class="quiz-sub">Are you ready to open it?</p>
+      <div class="quiz-buttons">
+        <button class="btn-yes" id="q0-yes">✨ YES, Show Me!</button>
+        <button class="btn-nah" id="q0-nah">NAH</button>
+      </div>
+    </div>
 
-        <!-- Summary Section -->
-        <section class="glass-card rounded-3xl p-8 mb-8 border-l-8 border-rose-400">
-            <h2 class="text-xl font-bold text-rose-600 mb-4 flex items-center">
-                <i class="fas fa-sparkles mr-3"></i> Executive Summary
-            </h2>
-            <p class="text-gray-700 leading-relaxed italic">
-                "Emotionally available and highly committed boyfriend candidate with a strong provider mindset. Known for giving 100% effort (even when only the bare minimum is required). Currently in a <span class="font-bold text-rose-500">gentle, patient, loving, and caring era</span>."
-            </p>
-        </section>
+    <div id="quiz-step-1" class="quiz-card" hidden>
+      <div class="quiz-big-emoji">👀</div>
+      <h2 class="quiz-title">Wait... are you <em>sure</em> sure?</h2>
+      <p class="quiz-sub" id="nah-counter-text">&nbsp;</p>
+      <div class="quiz-buttons">
+        <button class="btn-yes" id="q1-yes">I'M SURE 💖</button>
+        <button class="btn-nah" id="q1-nah">NAH</button>
+      </div>
+    </div>
 
-        <!-- The Experience (Contracts) -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="glass-card rounded-3xl p-8">
-                <h2 class="text-xl font-bold text-rose-600 mb-4 flex items-center">
-                    <i class="fas fa-history mr-3"></i> Experience
-                </h2>
-                <div class="space-y-4">
-                    <div class="border-l-2 border-rose-200 pl-4">
-                        <h3 class="font-bold text-gray-800">Boyfriend (3 Past Contracts)</h3>
-                        <p class="text-xs text-rose-400 font-bold mb-2 uppercase">Previous Eras</p>
-                        <ul class="text-sm text-gray-600 space-y-2">
-                            <li>✨ Hands-on experience in understanding women</li>
-                            <li>✨ Transitioned into emotionally aware partner</li>
-                            <li>✨ Mastered the art of avoiding unnecessary drama</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div id="quiz-step-2" class="quiz-card" hidden>
+      <div class="quiz-big-emoji">🌹</div>
+      <h2 class="quiz-title">Okay okay... getting into it</h2>
+      <p class="quiz-sub">One last step and you're in 😏</p>
+      <div class="quiz-buttons">
+        <button class="btn-yes" id="q2-yes">LET'S GOOO 🔥</button>
+        <button class="btn-nah" id="q2-nah">NAH</button>
+      </div>
+    </div>
 
-            <!-- Personality Profile -->
-            <div class="glass-card rounded-3xl p-8 bg-rose-50/50">
-                <h2 class="text-xl font-bold text-rose-600 mb-4 flex items-center">
-                    <i class="fas fa-user-tag mr-3"></i> Personality Profile
-                </h2>
-                <div class="space-y-3 text-sm text-gray-700">
-                    <p><strong>Initial Impression:</strong> Introverted, may resting bitch face.</p>
-                    <p><strong>Unlocked Level:</strong> Makulit, consistent kausap, high attention giver.</p>
-                    <p class="bg-white/50 p-2 rounded-lg italic">"Will not stop bothering you (in a good way) unless you're genuinely annoyed."</p>
-                </div>
-            </div>
-        </section>
+    <div id="quiz-step-3" class="quiz-card" hidden>
+      <div class="quiz-big-emoji">🤔</div>
+      <h2 class="quiz-title">Okay last thing — pop quiz!</h2>
+      <p class="quiz-question">What is 9 + 10?</p>
+      <div class="quiz-answers">
+        <button class="btn-answer" data-correct="false">19</button>
+        <button class="btn-answer" data-correct="true">Is this really necessary?</button>
+      </div>
+      <p id="wrong-msg" class="wrong-msg" hidden>❌ Wrong! Think harder 😅</p>
+    </div>
 
-        <!-- Core Skills Interactive -->
-        <section class="glass-card rounded-3xl p-8 mb-8">
-            <h2 class="text-xl font-bold text-rose-600 mb-6 flex items-center">
-                <i class="fas fa-star mr-3"></i> Core Boyfriend Skills
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="Remembers the small details, not just oo lang!">
-                    <div class="text-2xl mb-1">👂</div>
-                    <div class="text-xs font-bold text-gray-700">Active Listener</div>
-                </div>
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="From simple chill days to fully planned itineraries.">
-                    <div class="text-2xl mb-1">🗺️</div>
-                    <div class="text-xs font-bold text-gray-700">Date Planner</div>
-                </div>
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="Will motivate you, not just flex in the mirror.">
-                    <div class="text-2xl mb-1">🏋️</div>
-                    <div class="text-xs font-bold text-gray-700">Gym Partner</div>
-                </div>
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="Turn it off and on? With love.">
-                    <div class="text-2xl mb-1">💻</div>
-                    <div class="text-xs font-bold text-gray-700">Tech Support</div>
-                </div>
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="Affectionate but not suffocating.">
-                    <div class="text-2xl mb-1">🤗</div>
-                    <div class="text-xs font-bold text-gray-700">Clingy (Healthy)</div>
-                </div>
-                <div class="skill-chip bg-white p-4 rounded-2xl text-center shadow-sm cursor-help transition-all" role="button" tabindex="0" data-tip="Making you laugh even on bad days.">
-                    <div class="text-2xl mb-1">🤡</div>
-                    <div class="text-xs font-bold text-gray-700">Clown Energy</div>
-                </div>
-            </div>
-            <div id="skill-tip" class="mt-4 text-center text-sm font-medium text-rose-500 h-6" role="status" aria-live="polite" aria-atomic="true">Click a skill to see details!</div>
-        </section>
+    <!-- Step 4: Vine meme -->
+    <div id="quiz-step-4" class="quiz-card vine-card" hidden>
+      <h2 class="vine-you-stupid">YOU STUPID</h2>
+      <div class="vine-video-wrap">
+        <video id="vine-video" src="vine-boom.mp4" playsinline muted></video>
+      </div>
+      <p class="vine-caption">✅ Access Granted. Preparing your experience...</p>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+    </div>
 
-        <!-- Lifestyle & Toxic Trait -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="glass-card rounded-3xl p-8">
-                <h2 class="text-xl font-bold text-rose-600 mb-4">🏠 Lifestyle</h2>
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-rose-400 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                    <span class="text-xs font-bold text-gray-500">Panganay Duties</span>
-                </div>
-                <p class="text-sm text-gray-600">Work + Gym + Family. Disciplined routine with a strong sense of responsibility.</p>
-            </div>
-            
-            <div id="toxic-trait" class="glass-card rounded-3xl p-8 bg-orange-50">
-                <h2 class="text-xl font-bold text-orange-600 mb-4">⚠️ Minor "Toxic" Trait</h2>
-                <p class="text-sm italic text-orange-800">
-                    "Kahit sampu pa kame, basta ako favorite mo."
-                </p>
-                <p class="text-xs text-orange-400 mt-2">(Playful competitiveness, not actual chaos)</p>
-            </div>
+  </div>
+
+  <!-- ══ PORTFOLIO SCREEN ══ -->
+  <div id="portfolio-screen" hidden>
+
+    <header id="top-bar">
+      <span id="app-logo">Created by yours truly....</span>
+      <div id="theme-switcher">
+        <button class="theme-btn active" data-theme="sunset" aria-label="Sunset theme">🌅</button>
+        <button class="theme-btn" data-theme="morning" aria-label="Morning theme">☀️</button>
+        <button class="theme-btn" data-theme="midnight" aria-label="Midnight theme">🌙</button>
+      </div>
+      <button id="mute-btn" aria-label="Toggle sound">🔊</button>
+    </header>
+
+    <main id="page-content">
+
+      <!-- ── OVERVIEW ── -->
+      <section class="page-section">
+        <div class="card profile-card">
+          <span class="status-badge">Available Now</span>
+          <div class="avatar-wrap">
+            <svg class="avatar-ring-svg" viewBox="0 0 136 136">
+              <circle cx="68" cy="68" r="60" class="ring-track"/>
+              <circle cx="68" cy="68" r="60" class="ring-fill" id="avatar-ring-fill"
+                stroke-dasharray="376.99" stroke-dashoffset="376.99"/>
+            </svg>
+            <img src="header.jpg" alt="Vincent" class="avatar-img">
+            <div class="avatar-score-badge" id="avatar-score-badge">--</div>
+          </div>
+          <h1 class="profile-name">Vincent Gabrielle Pimentel</h1>
+          <p class="profile-tagline">Premium Bebe Material • Emotionally Intelligent</p>
+          <div class="profile-contact">
+            <span><i class="fas fa-map-marker-alt"></i> Manila, Philippines</span>
+            <span><i class="fas fa-phone"></i> 09273537500</span>
+            <span><i class="fas fa-envelope"></i> vincentgabriellepimentel@gmail.com</span>
+          </div>
         </div>
 
-        <!-- Green Flags Checker -->
-        <section class="glass-card rounded-3xl p-8 mb-8 text-center">
-            <h2 class="text-2xl font-bold text-rose-600 mb-6">Green Flag Checker</h2>
-            <div class="flex flex-wrap justify-center gap-6">
-                <label class="flag-item flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" class="green-flag w-5 h-5">
-                    <span class="font-bold text-gray-700">Consistency</span>
-                </label>
-                <label class="flag-item flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" class="green-flag w-5 h-5">
-                    <span class="font-bold text-gray-700">Effort > Words</span>
-                </label>
-                <label class="flag-item flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" class="green-flag w-5 h-5">
-                    <span class="font-bold text-gray-700">Provider Mindset</span>
-                </label>
-                <label class="flag-item flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" class="green-flag w-5 h-5">
-                    <span class="font-bold text-gray-700">Loyalty</span>
-                </label>
-            </div>
-        </section>
+        <div class="card">
+          <h2 class="card-title">✨ Executive Summary</h2>
+          <p class="card-italic">
+            "Emotionally available and highly committed boyfriend candidate with a strong provider mindset.
+            Known for giving 100% effort (even when only the bare minimum is required). Currently in a
+            <strong>gentle, patient, loving, and caring era</strong>."
+          </p>
+        </div>
 
-        <!-- CTA Section -->
-        <section class="text-center pb-12">
-            <h3 class="text-rose-500 font-bold mb-4 uppercase tracking-widest">Target Applicant: <span class="text-2xl block mt-2 text-rose-700">YOU.</span></h3>
-            <button id="hireBtn" type="button" data-mailto="mailto:vincentgabriellepimentel@gmail.com?subject=YES%20I%20DO" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-4 px-12 rounded-full text-xl shadow-lg transform transition active:scale-95 hover:scale-105">
-                SUBMIT YOUR HEART ❤️
-            </button>
-            <div id="congrats" class="hidden-content mt-6 p-4 glass-card rounded-2xl text-rose-600 font-bold" aria-hidden="true">
-                CONGRATULATIONS! Interview scheduled for the next coffee date. ☕✨
+        <div class="two-col">
+          <div class="card">
+            <h2 class="card-title">🕐 Experience</h2>
+            <div class="timeline-entry">
+              <h3 class="timeline-role">Job: Boyfriend (3 Past Contracts)</h3>
+              <p class="timeline-era">Previous Eras</p>
+              <ul class="timeline-list">
+                <li>✨ Hands-on experience in understanding women</li>
+                <li>✨ Transitioned into emotionally aware partner</li>
+                <li>✨ Mastered the art of avoiding unnecessary drama</li>
+              </ul>
             </div>
-        </section>
+          </div>
+          <div class="card card-tinted">
+            <h2 class="card-title">🏷️ Personality Profile</h2>
+            <p class="card-body"><strong>Initial Impression:</strong> Introverted, may resting bitch face.</p>
+            <p class="card-body"><strong>Unlocked Level:</strong> Makulit, consistent kausap, high attention giver.</p>
+            <p class="personality-quote">"Will not stop bothering you (in a good way) unless you're genuinely annoyed."</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── QUALIFICATIONS ── -->
+      <section class="page-section">
+        <div class="card">
+          <h2 class="card-title">⭐ Core Boyfriend Skills</h2>
+          <div class="skills-grid">
+            <button class="skill-chip" data-tip="Remembers the small details, not just oo lang!">
+              <span class="skill-emoji">👂</span><span class="skill-name">Active Listener</span>
+            </button>
+            <button class="skill-chip" data-tip="From simple chill days to fully planned itineraries.">
+              <span class="skill-emoji">🗺️</span><span class="skill-name">Date Planner</span>
+            </button>
+            <button class="skill-chip" data-tip="Will motivate you, not just flex in the mirror.">
+              <span class="skill-emoji">🏋️</span><span class="skill-name">Gym Partner</span>
+            </button>
+            <button class="skill-chip" data-tip="Turn it off and on? With love.">
+              <span class="skill-emoji">💻</span><span class="skill-name">Tech Support</span>
+            </button>
+            <button class="skill-chip" data-tip="Affectionate but not suffocating.">
+              <span class="skill-emoji">🤗</span><span class="skill-name">Clingy (Healthy)</span>
+            </button>
+            <button class="skill-chip" data-tip="Making you laugh even on bad days.">
+              <span class="skill-emoji">🤡</span><span class="skill-name">Clown Energy</span>
+            </button>
+          </div>
+          <div id="skill-tip-box" class="skill-tip-box" role="status" aria-live="polite">Click a skill to see details!</div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <h2 class="card-title">🏠 Lifestyle</h2>
+            <div class="progress-row">
+              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:90%"></div></div>
+              <span class="progress-label">Panganay Duties</span>
+            </div>
+            <p class="card-body">Work + Gym + Family. Disciplined routine with a strong sense of responsibility.</p>
+          </div>
+          <div class="card card-warning">
+            <h2 class="card-title-warn">⚠️ Minor "Toxic" Trait</h2>
+            <p class="card-italic">"Kahit sampu pa kame, basta ako favorite mo why not??."</p>
+            <p class="card-note">(Playful competitiveness, not actual chaos)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── VERIFIER ── -->
+      <section class="page-section">
+        <div class="card">
+          <h2 class="card-title">💘 Test Your Compatibility with Vincent</h2>
+
+          <div class="flags-wrap" style="margin-bottom:1.5rem">
+            <label class="flag-item"><input type="checkbox" class="flag-cb" checked><span>Consistency</span></label>
+            <label class="flag-item"><input type="checkbox" class="flag-cb" checked><span>Effort &gt; Words</span></label>
+            <label class="flag-item"><input type="checkbox" class="flag-cb"><span>Provider Mindset</span></label>
+            <label class="flag-item"><input type="checkbox" class="flag-cb" checked><span>Loyalty</span></label>
+          </div>
+
+          <div class="sliders" style="margin-bottom:1.5rem">
+            <div class="slider-row">
+              <label>🤗 Cuddle Level <strong id="val-cuddle">85</strong>%</label>
+              <input type="range" id="sl-cuddle" min="0" max="100" value="85" class="cal-slider">
+            </div>
+            <div class="slider-row">
+              <label>🎁 Spoil Frequency <strong id="val-spoil">75</strong>%</label>
+              <input type="range" id="sl-spoil" min="0" max="100" value="75" class="cal-slider">
+            </div>
+            <div class="slider-row">
+              <label>💪 Gym Motivation <strong id="val-gym">90</strong>%</label>
+              <input type="range" id="sl-gym" min="0" max="100" value="90" class="cal-slider">
+            </div>
+          </div>
+
+          <div style="text-align:center">
+            <button id="calculate-btn" class="btn-submit">Calculate 💖</button>
+          </div>
+
+          <div id="compat-result" class="compat-result" hidden>
+            <p class="compat-text">IT DOESN'T MATTER,<br>I WILL WORSHIP AND GIVE YOU MY LIFE<br>AS LONG AS YOU GIVE ME HALF OF YOURS.</p>
+          </div>
+        </div>
+
+        <div class="card cta-card">
+          <h3 class="cta-heading">Target Applicant: <span class="cta-target">YOU.</span></h3>
+          <button id="heart-submit-btn" class="btn-submit">SUBMIT YOUR HEART ❤️</button>
+          <div id="congrats-msg" class="congrats" hidden>
+            🎉 CONGRATULATIONS! Interview scheduled for the next coffee date. ☕✨
+          </div>
+        </div>
+      </section>
+
     </main>
+  </div>
+
+  <!-- ══ SUCCESS MODAL ══ -->
+  <div id="success-modal" class="modal-overlay" hidden role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-close-btn" class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-emoji-big">💌</div>
+      <h2 class="modal-title">Application Received!</h2>
+      <p class="modal-body">Your heart has been officially submitted. Vincent's calendar is being checked for the next coffee date...</p>
+      <button id="modal-ok-btn" class="btn-yes">💖 I Can't Wait!</button>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="heart-and-soul.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="app.js"></script>
 </body>
 </html>
